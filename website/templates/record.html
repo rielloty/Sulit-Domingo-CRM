@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card">
+  <div class="card-header">
+    {{ team_a_record.first_name }}
+  </div>
+  <div class="card-body">
+    <strong>Codename:  </strong><p class="card-text">{{ team_a_record.code_name }}</p>
+    <strong>Food to Bring:  </strong><p class="card-text">{{ team_a_record.food_to_bring }}</p>
+    <strong>Nabunot:  </strong><p class="card-text">{{ team_a_record.nabunot }}</p>
+    <strong>Created at:  </strong><p class="card-text">{{ team_a_record.created_at }}</p>
+    <strong>ID#:  </strong><p class="card-text">{{ team_a_record.id }}</p>
+    
+   
+  </div>
+</div>
+		
+<br/>
+<a href="{% url 'home' %}" class="btn btn-success">Return</a>
+
+<a href="{% url 'delete_record' team_a_record.id %}" class="btn btn-danger">Delete</a>
+
+<a href="{% url 'update_record' team_a_record.id %}" class="btn btn-secondary">Update Record</a>
+
+
+
+{% endblock %}

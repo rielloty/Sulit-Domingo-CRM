@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+
+<h1>Christmas Party Shenanigans</h1>
+
+<table class="table table-light table-hover table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Code Name</th>
+      <th scope="col">Food to Bring</th>
+      <th scope="col">Nabunot</th>
+      <th scope="col">Created At</th>
+      <th scope="col">ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+{% if records %}
+    {% for record in records %}
+      <tr>
+        <td>{{ record.first_name }}</td>
+        <td>{{ record.code_name }}</td>
+        <td>{{ record.food_to_bring }}</td>
+        <td>{{ record.nabunot }}</td>
+        <td>{{ record.created_at }}</td>
+        <td><a href="{% url 'Team_A_Member' record.id %}">{{ record.id }}</a></td>
+      </tr>
+    {% endfor %}
+
+{% endif %}
+
+      </tbody>
+    </table>
+
+{% else %}
+
+<div class="col-md-6 offset-md-3">
+<h1>Login</h1>
+<br/>
+<form method="POST" action="{% url 'home' %}">
+  {% csrf_token %}
+  
+  <div class="mb-3">
+    
+    <input type="text" class="form-control" name="username", placeholder="Username" required>
+    
+  </div>
+  <div class="mb-3">
+    
+    <input type="password" class="form-control" name="password", placeholder="Password" required>
+  </div>
+  <br/>
+  <button type="submit" class="btn btn-secondary">Login</button>
+
+</form>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
