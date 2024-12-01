@@ -16,10 +16,10 @@ def home(request):
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
 			login(request, user)
-			messages.success(request, "OO IKAW PARIN")
+			messages.success(request, "TANDAAN JANUARY 3 ANG CHRISTMAS PARTY")
 			return redirect('home')
 		else:
-			messages.success(request, "HINDI IKAW")
+			messages.success(request, "HINDI KA TEAM A MEMBER")
 			return redirect('home')
 
 	else:
@@ -28,7 +28,7 @@ def home(request):
 
 def logout_user(request):
 	logout(request)
-	messages.success(request, "HINDI KABA NANINIWALA SA RED STRING THEORY")
+	messages.success(request, "WAG MO KALIMUTAN NABUNOT AT DADALHIN")
 	return redirect('home')
 
 def register_user(request):
@@ -41,7 +41,7 @@ def register_user(request):
 			password = form.cleaned_data['password1']
 			user = authenticate(username=username, password=password)
 			login(request, user)
-			messages.success(request, "HINDI MO SIYA MAPAPANTAYAN")
+			messages.success(request, "WELCOME BRO!")
 			return redirect('home')
 	else:
 		form = SignUpForm()
@@ -89,7 +89,7 @@ def update_record(request, pk):
 		form = AddRecordForm(request.POST or None, instance=current_record)
 		if form.is_valid():
 			form.save()
-			messages.success(request, "NAUPDATE NA BEETCH")
+			messages.success(request, "ANO NANAMAN TONG DINAGDAG MO")
 			return redirect('home')	
 		return render(request, 'update_record.html', {'form':form})
 	else:
